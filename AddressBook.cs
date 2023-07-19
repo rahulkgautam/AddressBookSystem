@@ -41,17 +41,10 @@ namespace AddressBookSystem
         }
         public void ViewContacts(List<Address> contacts)
         {
-            Console.WriteLine("Contacts:");
             foreach (var contact in contacts)
             {
-                Console.WriteLine($"First Name: {contact.FirstName}");
-                Console.WriteLine($"Last Name: {contact.LastName}");
-                Console.WriteLine($"Address: {contact.Addreses}");
-                Console.WriteLine($"City: {contact.City}");
-                Console.WriteLine($"State: {contact.State}");
-                Console.WriteLine($"Zip: {contact.Zip}");
-                Console.WriteLine($"Phone Number: {contact.PhoneNumber}");
-                Console.WriteLine($"Email: {contact.Email}");
+                Console.WriteLine($"First Name: {contact.FirstName},Last Name: {contact.LastName},Address: {contact.Addreses},City: {contact.City},State: {contact.State},Zip: {contact.Zip},Phone Number: {contact.PhoneNumber},Email: {contact.Email}");
+                
             }
         }
     }
