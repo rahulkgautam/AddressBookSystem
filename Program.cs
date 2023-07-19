@@ -14,7 +14,8 @@ namespace AddressBookSystem
             {
                 Console.WriteLine("1. Add a contact");
                 Console.WriteLine("2. View contacts");
-                Console.WriteLine("3. Exit");
+                Console.WriteLine("3. Edit contacts");
+                Console.WriteLine("4. Exit");
 
                 Console.Write("Enter your choice: ");
                 int choice = Convert.ToInt32(Console.ReadLine());
@@ -28,6 +29,9 @@ namespace AddressBookSystem
                         book.ViewContacts(contacts);
                         break;
                     case 3:
+                        book.EditContact(contacts);
+                        break;
+                    case 4:
                         Environment.Exit(0);
                         break;
                     default:
