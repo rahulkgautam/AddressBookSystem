@@ -10,34 +10,46 @@ namespace AddressBookSystem
             Console.WriteLine("Welcome to Address Book System");
             List<Address> contacts = new List<Address>();
             var book = new AddressBook();
-            while (true)
+            try
             {
-                Console.WriteLine("1. Add a contact");
-                Console.WriteLine("2. View contacts");
-                Console.WriteLine("3. Edit contacts");
-                Console.WriteLine("4. Exit");
-
-                Console.Write("Enter your choice: ");
-                int choice = Convert.ToInt32(Console.ReadLine());
-
-                switch (choice)
+                while (true)
                 {
-                    case 1:
-                        book.AddContact(contacts);
-                        break;
-                    case 2:
-                        book.ViewContacts(contacts);
-                        break;
-                    case 3:
-                        book.EditContact(contacts);
-                        break;
-                    case 4:
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Invalid choice. Please try again.");
-                        break;
+
+                    Console.WriteLine("1. Add a contact");
+                    Console.WriteLine("2. View contacts");
+                    Console.WriteLine("3. Edit contacts");
+                    Console.WriteLine("4. Delete contacts");
+                    Console.WriteLine("5. Exit");
+
+                    Console.Write("Enter your choice: ");
+                    int choice = Convert.ToInt32(Console.ReadLine());
+
+                    switch (choice)
+                    {
+                        case 1:
+                            book.AddContact(contacts);
+                            break;
+                        case 2:
+                            book.ViewContacts(contacts);
+                            break;
+                        case 3:
+                            book.EditContact(contacts);
+                            break;
+                        case 4:
+                            book.DeleteContact(contacts);
+                            break;
+                        case 5:
+                            Environment.Exit(0);
+                            break;
+                        default:
+                            Console.WriteLine("Invalid choice. Please try again.");
+                            break;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Please Enter Valid Number");
             }
         }
     }

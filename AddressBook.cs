@@ -64,7 +64,7 @@ namespace AddressBookSystem
                     Address contact = contacts.Find((a) => a.FirstName == firstName);
                     if (contact == null)
                     {
-                        Console.WriteLine("Your FirstName No match Enter Try Again");
+                        Console.WriteLine("Your FirstName No match!!! Enter please try Again");
                         return;
                     }
 
@@ -91,12 +91,41 @@ namespace AddressBookSystem
 
                     Console.WriteLine("Contact Edited successfully!");
                 }
+                else
+                    Console.WriteLine("First Add one at list contact ...Empty");
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Please Enter valid Data");
             }
             
+        }
+        public void DeleteContact(List<Address> contacts)
+        {
+            try
+            {
+                Console.WriteLine("Enter Your First Name");
+                var firstName = Console.ReadLine();
+                if (contacts != null)
+                {
+
+                    Address contact = contacts.Find((a) => a.FirstName == firstName);
+                    if (contact == null)
+                    {
+                        Console.WriteLine("Your FirstName No match!!! Enter please try Again");
+                        return;
+                    }
+                    var index = contacts.IndexOf(contact);
+                    contacts.RemoveAt(index);
+                    Console.WriteLine("Deleted Successfully Contact");
+                }
+                else
+                    Console.WriteLine("First Add one at list contact ...Empty");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Please Enter Valid ");
+            }
         }
     }
 }
