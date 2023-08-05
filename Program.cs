@@ -8,13 +8,11 @@ namespace AddressBookSystem
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book System");
-            List<Address> contacts = new List<Address>();
+            Dictionary<string, List<Address>> addressBooks = new Dictionary<string, List<Address>>();
             var book = new AddressBook();
             try
             {
-                while (true)
-                {
-
+                while (true){
                     Console.WriteLine("1. Add a contact");
                     Console.WriteLine("2. View contacts");
                     Console.WriteLine("3. Edit contacts");
@@ -23,20 +21,19 @@ namespace AddressBookSystem
 
                     Console.Write("Enter your choice: ");
                     int choice = Convert.ToInt32(Console.ReadLine());
-
                     switch (choice)
                     {
                         case 1:
-                            book.AddContact(contacts);
+                            book.AddContact(addressBooks);
                             break;
                         case 2:
-                            book.ViewContacts(contacts);
+                            book.ViewContacts(addressBooks);
                             break;
                         case 3:
-                            book.EditContact(contacts);
+                            book.EditContact(addressBooks);
                             break;
                         case 4:
-                            book.DeleteContact(contacts);
+                            book.DeleteContact(addressBooks);
                             break;
                         case 5:
                             Environment.Exit(0);
