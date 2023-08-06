@@ -45,8 +45,10 @@ namespace AddressBookSystem
                 contact.Email = Console.ReadLine();
 
                 contacts.Add(contact);
-                addressBooks.Add(addressBookName, contacts);
+                if(!addressBooks.ContainsKey(addressBookName))
+                    addressBooks.Add(addressBookName, contacts);
                 Console.WriteLine("Contact added successfully!");
+                AddMultipleContact(addressBooks);
             }
             catch (Exception ex){
                 Console.WriteLine("Please Enter valid Data");
@@ -67,7 +69,7 @@ namespace AddressBookSystem
                         Console.WriteLine("First Add at list One Contact ...Empty");
                         break;
                     }
-                    foreach (var contact in addressBook.Value){                        
+                    foreach (var contact in addressBook.Value){
                         Console.WriteLine($"First Name: {contact.FirstName},Last Name: {contact.LastName},Address: {contact.Addreses},City: {contact.City},State: {contact.State},Zip: {contact.Zip},Phone Number: {contact.PhoneNumber},Email: {contact.Email}");
                     }
                 }
@@ -174,6 +176,13 @@ namespace AddressBookSystem
                 Console.WriteLine("{0} {1} ", count, addressBook.Key);
                 count++;
             }
+        }
+        public void AddMultipleContact(Dictionary<string, List<Address>> addressBooks)
+        {
+            Console.WriteLine("Do want add new Contact Press (Y/N)");
+            string addNewCustomer = Console.ReadLine().ToLower();
+            if (addNewCustomer == "y")
+                AddContact(addressBooks);
         }
     }
 }
