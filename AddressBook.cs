@@ -6,8 +6,8 @@ namespace AddressBookSystem
 {
     class AddressBook
     {
-        
-        public bool CheckDuplicatePerson(List<Address> contacts,string firstName)
+
+        public bool CheckDuplicatePerson(List<Address> contacts, string firstName)
         {
             foreach (var item in contacts)
             {
@@ -20,25 +20,25 @@ namespace AddressBookSystem
         {
             try
             {
-            List<Address> contacts = null;
-            PrintAllAddressBook(addressBooks);
-            Console.WriteLine("Enter Address Book Name");
-            string addressBookName = Console.ReadLine();
-            if (!addressBooks.ContainsKey(addressBookName)){
-                contacts = new List<Address>();
-            }
-            else{
-                foreach (var addressBook in addressBooks){
-                    if (addressBook.Key.Contains(addressBookName)){
-                        contacts = addressBook.Value;
-                        break;
+                List<Address> contacts = null;
+                PrintAllAddressBook(addressBooks);
+                Console.WriteLine("Enter Address Book Name");
+                string addressBookName = Console.ReadLine();
+                if (!addressBooks.ContainsKey(addressBookName)) {
+                    contacts = new List<Address>();
+                }
+                else {
+                    foreach (var addressBook in addressBooks) {
+                        if (addressBook.Key.Contains(addressBookName)) {
+                            contacts = addressBook.Value;
+                            break;
+                        }
                     }
                 }
-            }
                 Console.WriteLine("Enter contact details:");
                 Address contact = new Address();
                 Console.Write("First Name: ");
-                string fName= Console.ReadLine();
+                string fName = Console.ReadLine();
                 if (CheckDuplicatePerson(contacts, fName))
                 {
                     Console.WriteLine("It's Person Name Already Exits");
@@ -60,12 +60,12 @@ namespace AddressBookSystem
                 Console.Write("Email: ");
                 contact.Email = Console.ReadLine();
                 contacts.Add(contact);
-                if(!addressBooks.ContainsKey(addressBookName))
+                if (!addressBooks.ContainsKey(addressBookName))
                     addressBooks.Add(addressBookName, contacts);
                 Console.WriteLine("Contact added successfully!");
                 AddMultipleContact(addressBooks);
             }
-            catch (Exception ex){
+            catch (Exception ex) {
                 Console.WriteLine("Please Enter valid Data");
             }
         }
@@ -74,17 +74,17 @@ namespace AddressBookSystem
             PrintAllAddressBook(addressBooks);
             Console.WriteLine("Enter your Address Book Name");
             string addressBookName = Console.ReadLine();
-            if (!addressBooks.ContainsKey(addressBookName)){
+            if (!addressBooks.ContainsKey(addressBookName)) {
                 Console.WriteLine("Please Enter Valid Address Book Name");
                 return;
             }
-            foreach (var addressBook in addressBooks){
-                if (addressBook.Key == addressBookName){
-                    if (addressBook.Value.Count == 0){
+            foreach (var addressBook in addressBooks) {
+                if (addressBook.Key == addressBookName) {
+                    if (addressBook.Value.Count == 0) {
                         Console.WriteLine("First Add at list One Contact ...Empty");
                         break;
                     }
-                    foreach (var contact in addressBook.Value){
+                    foreach (var contact in addressBook.Value) {
                         Console.WriteLine($"First Name: {contact.FirstName},Last Name: {contact.LastName},Address: {contact.Addreses},City: {contact.City},State: {contact.State},Zip: {contact.Zip},Phone Number: {contact.PhoneNumber},Email: {contact.Email}");
                     }
                 }
@@ -97,25 +97,25 @@ namespace AddressBookSystem
                 PrintAllAddressBook(addressBooks);
                 Console.WriteLine("Enter your Address Book Name");
                 string addressBookName = Console.ReadLine();
-                if (!addressBooks.ContainsKey(addressBookName)){
+                if (!addressBooks.ContainsKey(addressBookName)) {
                     Console.WriteLine("Please Enter Valid Address Book Name");
                     return;
                 }
-                foreach (var addressBook in addressBooks){
-                    if (addressBook.Key == addressBookName){
+                foreach (var addressBook in addressBooks) {
+                    if (addressBook.Key == addressBookName) {
                         contacts = addressBook.Value;
                         break;
                     }
-                }                
-                if (contacts.Count == 0){
+                }
+                if (contacts.Count == 0) {
                     Console.WriteLine("First Add at list One Contact ...Empty");
                     return;
                 }
                 Console.WriteLine("Enter Your First Name");
                 var firstName = Console.ReadLine();
-                if (contacts != null){
+                if (contacts != null) {
                     Address contact = contacts.Find((a) => a.FirstName == firstName);
-                    if (contact == null){
+                    if (contact == null) {
                         Console.WriteLine("Your FirstName No match!!! Enter please try Again");
                         return;
                     }
@@ -138,10 +138,10 @@ namespace AddressBookSystem
                 else
                     Console.WriteLine("First Add at list One Contact ...Empty");
             }
-            catch (Exception ex){
+            catch (Exception ex) {
                 Console.WriteLine("Please Enter valid Data");
             }
-            
+
         }
         public void DeleteContact(Dictionary<string, List<Address>> addressBooks)
         {
@@ -151,25 +151,25 @@ namespace AddressBookSystem
                 PrintAllAddressBook(addressBooks);
                 Console.WriteLine("Enter your Address Book Name");
                 string addressBookName = Console.ReadLine();
-                if (!addressBooks.ContainsKey(addressBookName)){
+                if (!addressBooks.ContainsKey(addressBookName)) {
                     Console.WriteLine("Please Enter Valid Address Book Name");
                     return;
                 }
-                foreach (var addressBook in addressBooks){
-                    if (addressBook.Key == addressBookName){
+                foreach (var addressBook in addressBooks) {
+                    if (addressBook.Key == addressBookName) {
                         contacts = addressBook.Value;
                         break;
                     }
                 }
-                if (contacts.Count == 0){
+                if (contacts.Count == 0) {
                     Console.WriteLine("First Add at list One Contact ...Empty");
                     return;
                 }
                 Console.WriteLine("Enter Your First Name");
                 var firstName = Console.ReadLine();
-                if (contacts != null){
+                if (contacts != null) {
                     Address contact = contacts.Find((a) => a.FirstName == firstName);
-                    if (contact == null){
+                    if (contact == null) {
                         Console.WriteLine("Your FirstName No match!!! Enter please try Again");
                         return;
                     }
@@ -180,14 +180,14 @@ namespace AddressBookSystem
                 else
                     Console.WriteLine("First Add at list One Contact ...Empty");
             }
-            catch (Exception ex){
+            catch (Exception ex) {
                 Console.WriteLine("Please Enter Valid ");
             }
         }
-        public void PrintAllAddressBook(Dictionary<string, List<Address>> addressBooks){
+        public void PrintAllAddressBook(Dictionary<string, List<Address>> addressBooks) {
             int count = 1;
             Console.WriteLine("===========++++Total Address Book++++=============");
-            foreach (var addressBook in addressBooks){
+            foreach (var addressBook in addressBooks) {
                 Console.WriteLine("{0} {1} ", count, addressBook.Key);
                 count++;
             }
@@ -199,5 +199,30 @@ namespace AddressBookSystem
             if (addNewCustomer == "y")
                 AddContact(addressBooks);
         }
+        public void SearchPerson(Dictionary<string, List<Address>> addressBooks)
+        {
+            int count = 0;
+            Console.WriteLine("Enter Person State or City Name");
+            string queryName = Console.ReadLine();
+            Console.WriteLine("+++++++++++++============Search Results+++++++++++=============");
+            foreach (var addressBook in addressBooks)
+            {
+                List<Address> searchData = addressBook.Value;
+                List<Address> searchResults = searchData.FindAll(person =>person.City.ToLower().Contains(queryName.ToLower()));
+                if(searchResults.Count==0)
+                    searchResults = searchData.FindAll(person => person.State.ToLower().Contains(queryName.ToLower()));
+                foreach (var item in searchResults)
+                {
+                    count++;
+                    Console.WriteLine(count+" First Name:- " + item.FirstName + " Last Name:- " + item.LastName + " City:- " + item.City + " State:- " + item.State);
+                   
+                }
+            }
+            if (count == 0)
+                Console.WriteLine("No Match data...");
+            
+        
+        }
+    
     }
 }
