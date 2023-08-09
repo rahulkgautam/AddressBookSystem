@@ -6,8 +6,20 @@ namespace AddressBookSystem
 {
     class AddressBook
     {
+        
+        public bool CheckDuplicatePerson(List<Address> contacts,string firstName)
+        {
+            foreach (var item in contacts)
+            {
+                if (item.FirstName.Equals(firstName))
+                    return true;
+            }
+            return false;
+        }
         public void AddContact(Dictionary<string, List<Address>> addressBooks)
         {
+            try
+            {
             List<Address> contacts = null;
             PrintAllAddressBook(addressBooks);
             Console.WriteLine("Enter Address Book Name");
@@ -23,12 +35,16 @@ namespace AddressBookSystem
                     }
                 }
             }
-            try
-            {
                 Console.WriteLine("Enter contact details:");
                 Address contact = new Address();
                 Console.Write("First Name: ");
-                contact.FirstName = Console.ReadLine();
+                string fName= Console.ReadLine();
+                if (CheckDuplicatePerson(contacts, fName))
+                {
+                    Console.WriteLine("It's Person Name Already Exits");
+                    return;
+                }
+                contact.FirstName = fName;
                 Console.Write("Last Name: ");
                 contact.LastName = Console.ReadLine();
                 Console.Write("Address: ");
@@ -43,7 +59,6 @@ namespace AddressBookSystem
                 contact.PhoneNumber = Convert.ToInt64(Console.ReadLine());
                 Console.Write("Email: ");
                 contact.Email = Console.ReadLine();
-
                 contacts.Add(contact);
                 if(!addressBooks.ContainsKey(addressBookName))
                     addressBooks.Add(addressBookName, contacts);
@@ -179,7 +194,7 @@ namespace AddressBookSystem
         }
         public void AddMultipleContact(Dictionary<string, List<Address>> addressBooks)
         {
-            Console.WriteLine("Do want add new Contact Press (Y/N)");
+            Console.WriteLine("Do you want add new Contact Press (Y/N)");
             string addNewCustomer = Console.ReadLine().ToLower();
             if (addNewCustomer == "y")
                 AddContact(addressBooks);
