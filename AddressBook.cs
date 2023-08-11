@@ -220,6 +220,7 @@ namespace AddressBookSystem
             }
             if (count == 0)
                 Console.WriteLine("No Match data...");
+            Console.WriteLine("Total Count "+count);
             
         
         }
