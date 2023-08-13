@@ -7,6 +7,7 @@ namespace AddressBookSystem
     {
         static void Main(string[] args)
         {
+            
             Console.WriteLine("Welcome to Address Book System");
             Dictionary<string, List<Address>> addressBooks = new Dictionary<string, List<Address>>();
             var book = new AddressBook();
@@ -18,7 +19,9 @@ namespace AddressBookSystem
                     Console.WriteLine("3. Edit contacts");
                     Console.WriteLine("4. Delete contacts");
                     Console.WriteLine("5. Search Person by State or City");
-                    Console.WriteLine("6. Exit");
+                    Console.WriteLine("6. Person Contact Read by File");
+                    Console.WriteLine("7. Person Contact Write into File");
+                    Console.WriteLine("8. Exit");
 
                     Console.Write("Enter your choice: ");
                     int choice = Convert.ToInt32(Console.ReadLine());
@@ -40,6 +43,12 @@ namespace AddressBookSystem
                             book.SearchPerson(addressBooks);
                             break;
                         case 6:
+                            book.ReadContactDetails(addressBooks);
+                            break;
+                        case 7:
+                            book.WriteContactDetails(addressBooks);
+                            break;
+                        case 8:
                             Environment.Exit(0);
                             break;
                         default:

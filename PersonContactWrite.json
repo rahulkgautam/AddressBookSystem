@@ -1,0 +1,36 @@
+{
+  "Delhi": [
+    {
+      "FirstName": "Rahul",
+      "LastName": "Kumar",
+      "Addreses": "Noida",
+      "City": "Noida",
+      "State": "New Delhi",
+      "Zip": 274403,
+      "PhoneNumber": 9477368783,
+      "Email": "rk@gmail.com"
+    },
+    {
+      "FirstName": "Raj",
+      "LastName": "Kumar",
+      "Addreses": "Noida",
+      "City": "Noida",
+      "State": "New Delhi",
+      "Zip": 274403,
+      "PhoneNumber": 9477368783,
+      "Email": "rk@gmail.com"
+    }
+  ],
+  "Kanpur": [
+    {
+      "FirstName": "Ram",
+      "LastName": "Kumar",
+      "Addreses": "Noida",
+      "City": "Noida",
+      "State": "New Delhi",
+      "Zip": 274403,
+      "PhoneNumber": 9477368783,
+      "Email": "rk@gmail.com"
+    }
+  ]
+}

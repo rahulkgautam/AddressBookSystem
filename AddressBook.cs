@@ -1,12 +1,70 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace AddressBookSystem
 {
-    class AddressBook
+    public class AddressBook
     {
-
+        readonly string readPath = "D:\\RFP_291\\Project\\AddressBookSystem\\PersonContact.json";
+        readonly string writePath = "D:\\RFP_291\\Project\\AddressBookSystem\\PersonContactWrite.json";
+        public void ReadContactDetails(Dictionary<string, List<Address>> addressBooks)
+        {
+            try
+            {
+                List<Address> contacts = null;
+                string data = File.ReadAllText(readPath);
+                PrintAllAddressBook(addressBooks);
+                var addressBookNames = JsonConvert.DeserializeObject< Dictionary<string,List<Address>>>(data);
+                foreach (var addressBookName in addressBookNames)
+                {
+                    if (!addressBooks.ContainsKey(addressBookName.Key))
+                    {
+                        contacts = new List<Address>();
+                        contacts = addressBookName.Value;
+                    }
+                    else
+                    {
+                        foreach (var addressBook in addressBooks)
+                        {
+                            if (addressBook.Key.Contains(addressBookName.Key))
+                            {
+                                contacts = addressBook.Value;
+                                for (int i = 0; i < addressBookName.Value.Count; i++){
+                                    contacts.Add(addressBookName.Value[i]);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    if (!addressBooks.ContainsKey(addressBookName.Key))
+                        addressBooks.Add(addressBookName.Key, contacts);
+                }
+                Console.WriteLine("Contact added successfully!");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public void WriteContactDetails(Dictionary<string, List<Address>> addressBooks)
+        {
+            try {
+                if (addressBooks.Count == 0){
+                    Console.WriteLine("Add at list one contact...Empty");
+                    return;
+                }
+                string jsonData = JsonConvert.SerializeObject(addressBooks);
+                File.WriteAllText(writePath, jsonData);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
         public bool CheckDuplicatePerson(List<Address> contacts, string firstName)
         {
             foreach (var item in contacts)
